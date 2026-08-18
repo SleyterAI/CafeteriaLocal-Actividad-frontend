@@ -1,0 +1,33 @@
+
+<section id="productos">
+  <h2><strong>Nuestros productos</strong></h2>
+
+  @if (cargando) {
+    <p class="mensaje">Cargando productos...</p>
+  }
+
+  @if (error) {
+    <p class="mensaje error">{{ error }}</p>
+  }
+
+  @if (!cargando && !error && productos.length > 0) {
+    <div class="products-container">
+
+      @for (producto of productos; track producto.id) {
+
+        @if (producto.activo) {
+          <product-card-component
+            [producto]="producto" (agregar)="addToCart($event)"
+          />
+        }
+      }
+
+    </div>
+
+  }
+
+  @if (!cargando && !error && productos.length === 0) {
+    <p class="mensaje">No hay productos disponibles.</p>
+  }
+
+</section>

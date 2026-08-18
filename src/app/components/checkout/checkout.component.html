@@ -1,0 +1,179 @@
+<section class="container py-5">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Mi carrito</h2>
+    <span class="badge bg-danger">
+      {{ cartCount() }} productos
+    </span>
+  </div>
+
+
+  @if (cartProducts().length === 0) {
+  <div class="alert alert-light text-center">
+    <h4>Tu carrito está vacío</h4>
+    <p class="mb-0">
+      Agrega algunos productos para comenzar.
+    </p>
+  </div>
+
+  } @else {
+
+  <div class="row g-4">
+
+    <!-- Productos -->
+    <div class="col-lg-8">
+
+      @for (item of cartProducts(); track item.producto.id) {
+      <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+          <div class="row align-items-center">
+
+            <!-- Imagen -->
+            <div class="col-md-2">
+              <img [src]="item.producto.imagenUrl"
+              [alt]="item.producto.nombre"
+              class="img-fluid rounded">
+            </div>
+
+            <!-- Información -->
+            <div class="col-md-4">
+              <h5 class="mb-1">
+                {{ item.producto.nombre }}
+              </h5>
+
+              <small class="text-muted">
+                S/ {{ item.producto.precio | number:'1.2-2' }}
+              </small>
+            </div>
+
+
+            <!-- Cantidad -->
+            <div class="col-md-3">
+              <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-secondary btn-sm"
+                (click)="decrease(item.producto.id!)">
+                  -
+                </button>
+
+                <span class="fw-bold">
+                  {{ item.cantidad }}
+                </span>
+
+                <button class="btn btn-outline-secondary btn-sm"
+                (click)="increase(item.producto.id!)">
+                  +
+                </button>
+              </div>
+            </div>
+
+
+            <!-- Subtotal -->
+            <div class="col-md-2">
+              <strong>
+                S/
+                {{
+                item.producto.precio * item.cantidad
+                | number:'1.2-2'
+                }}
+              </strong>
+            </div>
+
+
+            <!-- Eliminar -->
+            <div class="col-md-1">
+              <button class="btn btn-outline-danger btn-sm"
+              (click)="remove(item.producto.id!)">
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+
+    <!-- Resumen -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-4">
+            Resumen
+          </h4>
+
+          <div class="d-flex justify-content-between mb-2">
+            <span> Subtotal </span>
+
+            <strong>S/ {{ subtotal() | number:'1.2-2' }}</strong>
+          </div>
+
+          <hr>
+
+          <div class="d-flex justify-content-between">
+            <span class="fw-bold">Total</span>
+
+            <strong class="fs-4">
+              S/ {{ total() | number:'1.2-2' }}
+            </strong>
+          </div>
+
+          <button
+          class="btn btn-dark w-100 mt-4" type="submit">
+          Continuar compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  <!--Formulario cliente-->
+  <div>
+  <h2 class="mb-0">Datos personales:</h2>
+
+  <form #formulario="ngForm" (ngSubmit)="crearPedido()">
+
+    <div class="mb-3 mt-4">
+      <input
+        type="text"
+        id="nombre"
+        name="nombre"
+        class="form-control input-datos"
+        placeholder="Ingrese su nombre"
+        [(ngModel)]="clienteNombre"
+        required
+      />
+    </div>
+
+    <div class="mb-3 mt-4">
+      <input
+        type="tel"
+        id="celular"
+        name="celular"
+        class="form-control input-datos"
+        placeholder="Ingrese su celular"
+        [(ngModel)]="celular"
+        required
+      />
+    </div>
+
+    <div class="mb-3 mt-4">
+      <input
+        type="text"
+        id="direccion"
+        name="direccion"
+        class="form-control input-datos"
+        placeholder="Ingrese su dirección"
+        [(ngModel)]="direccion"
+        required
+      />
+    </div>
+
+    <button
+      class="btn btn-dark"
+      type="submit"
+      [disabled]="formulario.invalid">
+      Continuar compra
+    </button>
+
+  </form>
+</div>
+</section>

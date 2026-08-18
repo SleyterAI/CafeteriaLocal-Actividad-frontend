@@ -1,0 +1,27 @@
+/* BOTÓN */
+.btn-brown {
+  background-color: #A98467;
+  border-color: #A98467;
+  color: white;
+}
+
+.btn-brown:hover {
+  background-color: #8f6844;
+  border-color: #8f6844;
+  color: white;
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

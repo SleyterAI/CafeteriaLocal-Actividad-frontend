@@ -1,0 +1,17 @@
+footer {
+  padding: 1rem 1%;
+  background-color: #3e2723;
+  color: white;
+
+  text-align: center;
+}
+
+footer a {
+  margin: 0.rem;
+  color: #f5eee6;
+  font-size: 20px;
+}
+
+:host {
+  display: block;
+}

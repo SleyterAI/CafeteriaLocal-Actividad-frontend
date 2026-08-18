@@ -1,0 +1,12 @@
+import {Categoria} from './categoria.interface'
+
+export interface Producto {
+  id?:number;
+  nombre:string;
+  descripcion:string;
+  precio:number;
+  stock:number;
+  imagenUrl:string;
+  activo:boolean;
+  categoria: Categoria;
+}

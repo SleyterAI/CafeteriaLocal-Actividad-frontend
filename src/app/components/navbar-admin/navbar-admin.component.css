@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 5%;
+  background-color: #3e2723;
+  color: white;
+}
+
+nav h2 {
+  margin: 0;
+  color: #f5c16c;
+}
+
+nav div {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #f5c16c;
+}

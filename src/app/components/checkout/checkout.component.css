@@ -1,0 +1,36 @@
+section {
+  min-height: 70vh;
+  background-color: #fffaf5;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.card-body {
+  color: #3e2723;
+}
+
+h2 {
+  color: #3e2723;
+}
+
+.btn-dark {
+  background-color: #3e2723;
+  border-color: #3e2723;
+}
+
+.btn-dark:hover {
+  background-color: #5d4037;
+  border-color: #5d4037;
+}
+
+img {
+  max-height: 90px;
+  object-fit: cover;
+}
+
+.input-datos {
+  width: 66%;
+}
