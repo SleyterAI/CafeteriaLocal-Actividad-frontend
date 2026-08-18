@@ -4,9 +4,9 @@ import { PedidoRequest } from "../../interfaces/pedido.interface";
 import { DecimalPipe } from "@angular/common";
 
 type EstadoPedido =
-  | 'Pendiente'
-  | 'En preparacion'
-  | 'Entregado';
+  | 'pendiente'
+  | 'en preparacion'
+  | 'entregado';
 
 @Component({
   selector: 'pedidos-admin-page',
@@ -26,9 +26,9 @@ export class PedidosAdminPageComponent {
   error = '';
 
   estados: EstadoPedido[] = [
-    'Pendiente',
-    'En preparacion',
-    'Entregado'
+    'pendiente',
+    'en preparacion',
+    'entregado'
   ];
 
   ngOnInit(): void {
@@ -108,6 +108,23 @@ export class PedidosAdminPageComponent {
 
       default:
         return '';
+    }
+  }
+  getEstadoLabel(estado: string): string {
+
+    switch (estado.toLowerCase()) {
+
+      case 'pendiente':
+        return 'Pendiente';
+
+      case 'en preparacion':
+        return 'En preparación';
+
+      case 'entregado':
+        return 'Entregado';
+
+      default:
+        return estado;
     }
   }
 }
