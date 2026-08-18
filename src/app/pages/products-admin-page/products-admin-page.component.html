@@ -1,0 +1,66 @@
+<a>ADMIN PAGE</a>
+
+<div id="productos" class="table-container">
+  <h2><strong>Nuestros productos</strong></h2>
+
+  @if (cargando) {
+  <p class="mensaje">Cargando productos...</p>
+  }
+
+  @if (error) {
+  <p class="mensaje error">{{ error }}</p>
+  }
+
+  @if (!cargando && !error && productos.length > 0) {
+  <div class="products-container">
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Activo</th>
+          <th>Categoria ID</th>
+          <th>Categoria Nombre</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (producto of productos; track producto.id) {
+        <tr>
+          <td>{{ producto.id }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.stock }}</td>
+          <td>{{ producto.activo }}</td>
+          <td>{{ producto.categoria.id }}</td>
+          <td>{{ producto.categoria.nombre }}</td>
+          <td>
+            <button (click)="updatedProduct()">🔄</button>
+          </td>
+          <td>
+            <button (click)="createProduct()">➕</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+
+
+
+  </div>
+
+  }
+
+  @if (!cargando && !error && productos.length === 0) {
+  <p class="mensaje">No hay productos disponibles.</p>
+  }
+
+</div>

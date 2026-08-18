@@ -13,7 +13,7 @@ from "../../services/cart.service";
   selector:'products-component',
   templateUrl:'./products.component.html',
   styleUrl:'./products.component.css',
-  imports: [ProductCardComponent,RouterLink],
+  imports: [ProductCardComponent],
 })
 
 export class ProductsComponent implements OnInit{

@@ -1,7 +1,11 @@
-<navbar-component></navbar-component>
-<navbar-admin-component></navbar-admin-component>
-<main>
+<div class="page">
+  <navbar-component></navbar-component>
+  <navbar-admin-component></navbar-admin-component>
   <h1> ¿Qué estas buscando? 🤔 </h1>
-</main>
 
-<footer-component></footer-component>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer-component></footer-component>
+</div>

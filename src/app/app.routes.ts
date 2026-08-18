@@ -9,6 +9,10 @@ import { PedidoConfirmacionPageComponent }
 from './pages/pedido-confirmacion-page/pedido-confirmacion-page.component';
 import { AdminPageComponent }
 from './pages/admin-page/admin-page.component';
+import { ProductsAdminPageComponent }
+from './pages/products-admin-page/products-admin-page.component';
+import { PedidosAdminPageComponent }
+from './pages/pedidos-admin-page/pedidos-admin-page.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +34,15 @@ export const routes: Routes = [
   {
     path:'admin-page',
     component: AdminPageComponent,
+    children: [
+      {
+        path: 'products-admin-page',
+        component: ProductsAdminPageComponent
+      },
+      {
+        path: 'pedidos-admin-page',
+        component: PedidosAdminPageComponent
+      }
+    ]
   },
 ];

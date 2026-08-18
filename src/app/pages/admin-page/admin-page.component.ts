@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { NavbarAdminComponent } from "../../components/navbar-admin/navbar-admin.component";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector:'app-admin-page',
@@ -11,6 +12,7 @@ import { NavbarAdminComponent } from "../../components/navbar-admin/navbar-admin
     NavbarComponent,
     NavbarAdminComponent,
     FooterComponent,
+    RouterOutlet,
 ],
 })
 export class AdminPageComponent{}
