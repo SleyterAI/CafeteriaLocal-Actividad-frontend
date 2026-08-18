@@ -10,16 +10,15 @@ export class CartService {
 
   private readonly STORAGE_KEY = 'shopping-cart';
 
-  // Productos guardados en el carrito
+  //Productos guardados en el carrito
   private cartProducts = signal<CartItem[]>(this.loadCart());
 
-  // Cantidad total de unidades
+  //Cantidad total de unidades
   readonly cartCount = computed(() =>
     this.cartProducts().reduce(
       (total, item) => total + item.cantidad, 0)
   );
 
-  // Agregar producto
   addToCart(producto: Producto): void {
 
     this.cartProducts.update(items => {

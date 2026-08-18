@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Pedido } from '../interfaces/pedido.interface';
+import { Pedido, PedidoRequest } from '../interfaces/pedido.interface';
 import {environment} from '../environments/environment';
 
 @Injectable({
@@ -15,6 +15,9 @@ export class PedidoService {
 
   getAllPedido(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(this.apiUrl);
+  }
+  getAllPedidoRequest(): Observable<PedidoRequest[]> {
+    return this.http.get<PedidoRequest[]>(this.apiUrl);
   }
 
   getPedidoById(id: number): Observable<Pedido> {
@@ -33,7 +36,7 @@ export class PedidoService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  cambiarEstado(id: number,estado: string): Observable<Pedido> {
-    return this.http.patch<Pedido>(`${this.apiUrl}/${id}/estado`,estado);
+  cambiarEstado(id: number,estado: string): Observable<PedidoRequest> {
+    return this.http.patch<PedidoRequest>(`${this.apiUrl}/${id}/estado`,{estado});
   }
 }

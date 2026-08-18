@@ -1,20 +1,23 @@
 import { Component, inject } from "@angular/core";
 import { ProductoService } from "../../services/producto.service";
 import { Producto } from "../../interfaces/producto.interface";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-  selector:'products-admin-page',
-  templateUrl:'./products-admin-page.component.html',
-  styleUrl:'./products-admin-page.component.css',
+  selector: 'products-admin-page',
+  templateUrl: './products-admin-page.component.html',
+  styleUrl: './products-admin-page.component.css',
 
   imports: [
-],
+    RouterLink,
+    RouterLinkActive
+  ],
 })
-export class ProductsAdminPageComponent{
+export class ProductsAdminPageComponent {
   private productoService = inject(ProductoService);
   productos: Producto[] = [];
 
-  producto = this.productoService.
+  //producto = this.productoService.
   cargando = false;
   error = '';
 
@@ -39,9 +42,27 @@ export class ProductsAdminPageComponent{
     });
   }
 
-  updateProduct(){
-    this.productoService.updateProducto;
+  cambiarActivo(producto: Producto): void {
+
+    const nuevoEstado = !producto.activo;
+
+    this.productoService.cambiarActivo(producto.id!, nuevoEstado).subscribe({
+        next: (productoActualizado) => {
+          console.log(
+            'Producto actualizado:',
+            productoActualizado
+          );
+          producto.activo = productoActualizado.activo;
+        },
+
+        error: (err) => {
+          console.error('Error al actualizar estado:',err);
+          this.error =
+            'No se pudo actualizar el estado del producto';
+        }
+      });
   }
+
 }
 
 

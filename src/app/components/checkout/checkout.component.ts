@@ -49,7 +49,7 @@ export class CheckoutComponent {
       celular: this.celular,
       direccion: this.direccion,
 
-      detallePedidoRequestDto: this.cartProducts().map(item => ({
+      pedidoDetalleRequest: this.cartProducts().map(item => ({
         productoId: item.producto.id!,
         cantidad: item.cantidad}))
     };

@@ -5,7 +5,7 @@ export interface PedidoDetalle {
   id?:number;
   cantidad:number;
   precioUnitario:number;
-  subtotal:number;
+  subTotal:number;
   producto:Producto;
-  pedido:Pedido;
+  //pedido:Pedido;
 }

@@ -1,1 +1,158 @@
-<a>pedidos admin page</a>
+<h1>PEDIDOS GESTION ADMIN</h1>
+
+<div class="table-container">
+
+  <h2>Pedidos</h2>
+
+  @if (cargando) {
+  <p class="mensaje">
+    Cargando pedidos...
+  </p>
+  }
+
+  @if (error) {
+  <p class="mensaje error">
+    {{ error }}
+  </p>
+  }
+
+  @if (!cargando && !error && pedidoRequest.length > 0) {
+
+  @for (pedido of pedidoRequest; track pedido.id) {
+
+  <div class="pedido-card">
+
+    <!-- ========================= -->
+    <!-- INFORMACIÓN DEL PEDIDO -->
+    <!-- ========================= -->
+
+    <div class="pedido-header">
+
+      <div>
+        <h3>
+          Pedido #{{ pedido.id }}
+        </h3>
+
+        <p>
+          {{ pedido.fecha }}
+        </p>
+      </div>
+
+      <select [value]="pedido.estado" [class]="getEstadoClass(pedido.estado)"
+        [disabled]="actualizandoEstado.has(pedido.id)" (change)="cambiarEstado(pedido,$any($event.target).value)">
+
+        @for (estado of estados; track estado) {
+
+        <option [value]="estado">
+          {{ estado }}
+        </option>
+
+        }
+
+      </select>
+
+    </div>
+
+
+    <div class="pedido-info">
+
+      <div>
+        <span>Cliente</span>
+        <strong>
+          {{ pedido.clienteNombre }}
+        </strong>
+      </div>
+
+      <div>
+        <span>Celular</span>
+        <strong>
+          {{ pedido.celular }}
+        </strong>
+      </div>
+
+      <div>
+        <span>Dirección</span>
+        <strong>
+          {{ pedido.direccion }}
+        </strong>
+      </div>
+
+      <div>
+        <span>Total</span>
+        <strong>
+          S/ {{ pedido.total | number:'1.2-2' }}
+        </strong>
+      </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- DETALLES DEL PEDIDO -->
+    <!-- ========================= -->
+
+    <h4>
+      Detalles del pedido
+    </h4>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio unitario</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        @for (detalle of pedido.detalles; track detalle.id) {
+
+        <tr>
+
+          <td>
+            {{ detalle.id }}
+          </td>
+
+          <td>
+            {{ detalle.producto.nombre }}
+          </td>
+
+          <td>
+            {{ detalle.cantidad }}
+          </td>
+
+          <td>
+            S/ {{ detalle.precioUnitario | number:'1.2-2' }}
+          </td>
+
+          <td>
+            S/ {{ detalle.subTotal | number:'1.2-2' }}
+          </td>
+
+        </tr>
+
+        }
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  }
+
+  }
+
+  @if (!cargando && !error && pedidoRequest.length === 0) {
+
+  <p class="mensaje">
+    No hay pedidos disponibles.
+  </p>
+
+  }
+
+</div>

@@ -54,7 +54,7 @@
 
 /*productos*/
 section {
-  padding: 5rem 5%;
+  padding: 1.5rem 5%;
   background-color: #fffaf5;
 }
 
@@ -63,7 +63,7 @@ h2 {
   color: #3e2723;
   font-size: 2rem;
   margin-bottom: 4rem;
-  margin-top: 2.5rem;
+  margin-top: 0.05rem;
 }
 
 .products-container {

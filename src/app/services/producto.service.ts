@@ -32,4 +32,9 @@ export class ProductoService {
   deleteProducto(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  cambiarActivo(id: number,activo: boolean): Observable<Producto> {
+    return this.http.patch<Producto>(`${this.apiUrl}/${id}/activo`,{activo});
+  }
+
 }

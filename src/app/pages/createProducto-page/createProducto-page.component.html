@@ -1,0 +1,155 @@
+<div class="form-container">
+  <div class="form-card">
+    <h2>Crear producto</h2>
+
+    <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()">
+      <!-- NOMBRE -->
+      <div class="form-group">
+        <label for="nombre">
+          Nombre
+        </label>
+
+        <input id="nombre"
+        type="text"
+        formControlName="nombre"
+        placeholder="Nombre del producto">
+
+        @if (
+        productoForm.controls.nombre.touched &&
+        productoForm.controls.nombre.invalid
+        ) {
+
+        <small class="error-text">
+          El nombre es obligatorio y debe tener
+          al menos 3 caracteres.
+        </small>
+        }
+      </div>
+
+
+      <!-- DESCRIPCIÓN -->
+      <div class="form-group">
+        <label for="descripcion">
+          Descripción
+        </label>
+
+        <textarea id="descripcion"
+        rows="4"
+        formControlName="descripcion"
+        placeholder="Descripción del producto"></textarea>
+
+        @if (
+        productoForm.controls.descripcion.touched &&
+        productoForm.controls.descripcion.invalid
+        ) {
+
+        <small class="error-text">
+          La descripción es obligatoria.
+        </small>
+
+        }
+      </div>
+
+
+      <!-- PRECIO -->
+      <div class="form-group">
+        <label for="precio">
+          Precio
+        </label>
+
+        <input id="precio"
+        type="number"
+        step="0.01"
+        formControlName="precio"
+        placeholder="0.00">
+
+        @if (
+        productoForm.controls.precio.touched &&
+        productoForm.controls.precio.invalid
+        ) {
+
+        <small class="error-text">
+          El precio debe ser mayor a 0.
+        </small>
+        }
+      </div>
+
+
+      <!-- STOCK -->
+      <div class="form-group">
+        <label for="stock">
+          Stock
+        </label>
+
+        <input id="stock"
+        type="number"
+        formControlName="stock"
+        placeholder="Cantidad disponible">
+      </div>
+
+
+      <!-- URL IMAGEN -->
+      <div class="form-group">
+        <label for="imageUrl">
+          URL de imagen
+        </label>
+
+        <input id="imageUrl"
+        type="url"
+        formControlName="imageUrl"
+        placeholder="https://ejemplo.com/imagen.jpg">
+      </div>
+
+
+      <!-- CATEGORÍA -->
+
+      <div class="form-group">
+        <label for="categoriaId">
+          ID de categoría
+        </label>
+
+        <input id="categoriaId"
+        type="number"
+        formControlName="categoriaId"
+        placeholder="Ejemplo: 5">
+
+      </div>
+
+
+      <!-- ACTIVO -->
+      <div class="checkbox-group">
+        <input id="activo"
+        type="checkbox"
+        formControlName="activo">
+
+        <label for="activo">
+          Producto activo
+        </label>
+      </div>
+
+      <!-- BOTÓN -->
+      <button type="submit"
+      [disabled]="cargando">
+        @if (cargando) {
+        Guardando...
+        } @else {
+        Crear producto
+        }
+      </button>
+
+
+      @if (mensaje) {
+    <div class="mensaje success">
+      {{ mensaje }}
+    </div>
+    }
+
+    @if (error) {
+    <div class="mensaje error">
+      {{ error }}
+    </div>
+    }
+
+    </form>
+  </div>
+</div>

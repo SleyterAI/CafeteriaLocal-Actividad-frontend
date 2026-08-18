@@ -1,6 +1,12 @@
 import { Component, inject } from "@angular/core";
 import { PedidoService } from "../../services/pedido.service";
-import { Pedido } from "../../interfaces/pedido.interface";
+import { PedidoRequest } from "../../interfaces/pedido.interface";
+import { DecimalPipe } from "@angular/common";
+
+type EstadoPedido =
+  | 'Pendiente'
+  | 'En preparacion'
+  | 'Entregado';
 
 @Component({
   selector: 'pedidos-admin-page',
@@ -8,14 +14,22 @@ import { Pedido } from "../../interfaces/pedido.interface";
   styleUrl: './pedidos-admin-page.component.css',
 
   imports: [
+    DecimalPipe
   ],
 })
 export class PedidosAdminPageComponent {
 
   private pedidoService = inject(PedidoService);
-  pedido: Pedido[] = [];
+
+  pedidoRequest: PedidoRequest[] = [];
   cargando = false;
   error = '';
+
+  estados: EstadoPedido[] = [
+    'Pendiente',
+    'En preparacion',
+    'Entregado'
+  ];
 
   ngOnInit(): void {
     this.getAllPedido();
@@ -25,16 +39,75 @@ export class PedidosAdminPageComponent {
     this.cargando = true;
     this.error = '';
 
-    this.pedidoService.getAllPedido().subscribe({
+    this.pedidoService.getAllPedidoRequest().subscribe({
       next: (data) => {
-        this.pedido = data;
+        this.pedidoRequest = data;
         this.cargando = false;
       },
+
       error: (err) => {
         console.error('Error al obtener productos:', err);
         this.error = 'No se pudieron cargar los productos';
         this.cargando = false;
       }
     });
+  }
+
+  actualizandoEstado = new Set<number>();
+
+
+  cambiarEstado(pedido: PedidoRequest, nuevoEstado: string): void {
+
+    // Si seleccionó el mismo estado,
+    // no hacemos ninguna petición.
+    if (pedido.estado === nuevoEstado) { return; }
+
+    if (this.actualizandoEstado.has(pedido.id)) { return; }
+
+    const estadoAnterior = pedido.estado;
+
+    this.actualizandoEstado.add(pedido.id);
+    // Actualizamos visualmente
+    pedido.estado = nuevoEstado;
+
+    this.pedidoService.cambiarEstado(pedido.id, nuevoEstado).subscribe({
+      next: (pedidoActualizado) => {
+        const index = this.pedidoRequest.findIndex(
+          p => p.id === pedidoActualizado.id);
+
+        if (index !== -1) {
+          this.pedidoRequest[index] = pedidoActualizado;
+        }
+      },
+
+      error: (err) => {
+        console.error('Error al cambiar estado:', err);
+
+        // Si falla el backend,
+        // recuperamos el estado anterior.
+        pedido.estado = estadoAnterior;
+        this.actualizandoEstado.delete(pedido.id);
+        this.error = 'No se pudo actualizar el estado del pedido';
+      }
+
+    });
+  }
+
+  getEstadoClass(estado: string): string {
+
+    switch (estado.toLowerCase()) {
+
+      case 'pendiente':
+        return 'estado-pendiente';
+
+      case 'en preparacion':
+        return 'estado-preparacion';
+
+      case 'entregado':
+        return 'estado-entregado';
+
+      default:
+        return '';
+    }
   }
 }

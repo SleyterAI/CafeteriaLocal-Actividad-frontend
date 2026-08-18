@@ -6,7 +6,20 @@ export interface Producto {
   descripcion:string;
   precio:number;
   stock:number;
-  imagenUrl:string;
+  imageUrl:string;
   activo:boolean;
   categoria: Categoria;
+}
+
+export interface ProductoRequest {
+  id?:number;
+  nombre:string;
+  descripcion:string;
+  precio:number;
+  stock:number;
+  imageUrl:string;
+  activo:boolean;
+  categoria: {
+    id: number;
+  };
 }

@@ -51,3 +51,33 @@ th {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
+
+.estado {
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.estado.activo {
+  background-color: #e8f7ee;
+
+  color: #16803c;
+
+  border: 1px solid #a5d6b7;
+}
+
+
+.estado.inactivo {
+  background-color: #fde8e8;
+
+  color: #c62828;
+
+  border: 1px solid #f5b5b5;
+}

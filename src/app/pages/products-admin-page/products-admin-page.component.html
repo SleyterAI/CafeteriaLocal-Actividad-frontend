@@ -1,7 +1,9 @@
-<a>ADMIN PAGE</a>
+<h1>PRODUCTOS GESTION ADMIN</h1>
 
 <div id="productos" class="table-container">
   <h2><strong>Nuestros productos</strong></h2>
+
+  <button routerLink="createProducto-page" routerLinkActive="active">➕</button>
 
   @if (cargando) {
   <p class="mensaje">Cargando productos...</p>
@@ -42,21 +44,18 @@
           <td>{{ producto.categoria.id }}</td>
           <td>{{ producto.categoria.nombre }}</td>
           <td>
-            <button (click)="updatedProduct()">🔄</button>
-          </td>
           <td>
-            <button (click)="createProduct()">➕</button>
+            <button
+            type="button"
+            (click)="cambiarActivo(producto)">
+              🔄
+            </button>
           </td>
         </tr>
         }
       </tbody>
     </table>
-
-
-
-
   </div>
-
   }
 
   @if (!cargando && !error && productos.length === 0) {

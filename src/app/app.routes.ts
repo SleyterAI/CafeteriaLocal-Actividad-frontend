@@ -1,47 +1,62 @@
 import { Routes } from '@angular/router';
 import { LandingPageComponent }
-from './pages/landing-page/landing-page.component';
+  from './pages/landing-page/landing-page.component';
 import { ProductDetailPageComponent }
-from './pages/product-detail-page/product-detail-page.component'
+  from './pages/product-detail-page/product-detail-page.component'
+
 import { CheckoutPageComponent }
-from './pages/checkout-page/checkout-page.component'
+  from './pages/checkout-page/checkout-page.component'
 import { PedidoConfirmacionPageComponent }
-from './pages/pedido-confirmacion-page/pedido-confirmacion-page.component';
+  from './pages/pedido-confirmacion-page/pedido-confirmacion-page.component';
+
 import { AdminPageComponent }
-from './pages/admin-page/admin-page.component';
+  from './pages/admin-page/admin-page.component';
 import { ProductsAdminPageComponent }
-from './pages/products-admin-page/products-admin-page.component';
+  from './pages/products-admin-page/products-admin-page.component';
 import { PedidosAdminPageComponent }
-from './pages/pedidos-admin-page/pedidos-admin-page.component';
+  from './pages/pedidos-admin-page/pedidos-admin-page.component';
+
+import {CreateProductoPageComponent}
+from './pages/createProducto-page/createProducto-page.component';
 
 export const routes: Routes = [
   {
-    path:'',
+    path: '',
     component: LandingPageComponent,
   },
   {
-    path:'productos/:id',
+    path: 'productos/:id',
     component: ProductDetailPageComponent,
   },
   {
-    path:'carrito',
+    path: 'carrito',
     component: CheckoutPageComponent,
   },
   {
-    path:'pedido-confirmacion-page',
+    path: 'pedido-confirmacion-page',
     component: PedidoConfirmacionPageComponent,
   },
   {
-    path:'admin-page',
+    path: 'admin-page',
     component: AdminPageComponent,
     children: [
       {
         path: 'products-admin-page',
-        component: ProductsAdminPageComponent
+        component: ProductsAdminPageComponent,
+        /*children: [
+          {
+            path: 'createProducto-page',
+            component: CreateProductoPageComponent
+          },
+        ]*/
       },
       {
         path: 'pedidos-admin-page',
         component: PedidosAdminPageComponent
+      },
+      {
+        path: 'products-admin-page/createProducto-page',
+        component: CreateProductoPageComponent
       }
     ]
   },

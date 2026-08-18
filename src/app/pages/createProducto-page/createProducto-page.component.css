@@ -1,0 +1,194 @@
+.form-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.form-card {
+  background: #ffffff;
+
+  padding: 30px;
+
+  border-radius: 12px;
+
+  border: 1px solid #e5e0dc;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.form-card h2 {
+  margin: 0 0 25px;
+
+  color: #2d1b12;
+
+  font-size: 26px;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 20px;
+}
+
+
+.form-group label {
+  margin-bottom: 7px;
+
+  color: #3b2418;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+
+  padding: 11px 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8d2cd;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #333;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition: border-color 0.2s;
+}
+
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #8b4513;
+
+  box-shadow:
+    0 0 0 3px rgba(139, 69, 19, 0.08);
+}
+
+
+.form-group textarea {
+  resize: vertical;
+}
+
+
+.checkbox-group {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 25px;
+}
+
+
+.checkbox-group input {
+  width: 17px;
+  height: 17px;
+
+  cursor: pointer;
+}
+
+
+.checkbox-group label {
+  color: #444;
+
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+
+button[type="submit"] {
+  width: 100%;
+
+  padding: 13px 20px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: #8b4513;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+
+button[type="submit"]:hover {
+  background: #6f350f;
+}
+
+
+button[type="submit"]:active {
+  transform: scale(0.99);
+}
+
+
+button[type="submit"]:disabled {
+  background: #b9aaa0;
+
+  cursor: not-allowed;
+}
+
+
+.error-text {
+  margin-top: 5px;
+
+  color: #c62828;
+
+  font-size: 12px;
+}
+
+
+.mensaje {
+  padding: 12px 15px;
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+
+  border-radius: 7px;
+
+  font-size: 14px;
+}
+
+
+.mensaje.success {
+  background: #e8f7ee;
+
+  color: #16803c;
+
+  border: 1px solid #a5d6b7;
+}
+
+
+.mensaje.error {
+  background: #fde8e8;
+
+  color: #c62828;
+
+  border: 1px solid #f5b5b5;
+}
