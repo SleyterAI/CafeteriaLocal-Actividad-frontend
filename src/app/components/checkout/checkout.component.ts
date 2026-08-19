@@ -11,7 +11,7 @@ import { Pedido } from '../../interfaces/pedido.interface';
   selector: 'checkout-component',
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
-  imports: [DecimalPipe,FormsModule],
+  imports: [DecimalPipe, FormsModule],
 })
 export class CheckoutComponent {
 
@@ -27,7 +27,7 @@ export class CheckoutComponent {
 
   // Datos del cliente
   clienteNombre = '';
-  celular='';
+  celular = '';
   direccion = '';
 
   increase(productoId: number): void {
@@ -44,14 +44,15 @@ export class CheckoutComponent {
 
   crearPedido(): void {
 
-    const pedido:Pedido = {
+    const pedido: Pedido = {
       clienteNombre: this.clienteNombre,
       celular: this.celular,
       direccion: this.direccion,
 
-      pedidoDetalleRequest: this.cartProducts().map(item => ({
+      detallePedidoRequestDto: this.cartProducts().map(item => ({
         productoId: item.producto.id!,
-        cantidad: item.cantidad}))
+        cantidad: item.cantidad
+      }))
     };
 
     console.log(pedido);
@@ -61,14 +62,17 @@ export class CheckoutComponent {
         console.log('Pedido creado:', respuesta);
         this.cartService.clearCart();
         this.router.navigate(['/pedido-confirmacion-page'],
-        {queryParams: {estado: 'exito'}});
+          { queryParams: { estado: 'exito' } });
       },
 
       error: (error) => {
         console.error('Error al crear pedido:', error);
+        console.error('Status:', error.status);
+        console.error('Error:', error.error);
+        console.error('Mensaje:', error.message);
         this.cartService.clearCart();
         this.router.navigate(['/pedido-confirmacion-page'],
-        {queryParams: {estado: 'error'}});
+          { queryParams: { estado: 'error' } });
       }
     });
   }

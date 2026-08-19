@@ -1,6 +1,28 @@
-
 <section id="productos">
   <h2><strong>Nuestros productos</strong></h2>
+
+  <div class="category-filter">
+    <label for="categoria">
+      Filtrar por categoría:
+    </label>
+
+    <select
+      id="categoria"
+      [value]="categoriaSeleccionada"
+      (change)="cambiarCategoria($event)"
+      [disabled]="cargandoCategorias">
+
+      <option value="">
+        Todas las categorías
+      </option>
+
+      @for (categoria of categorias; track categoria.id) {
+      <option [value]="categoria.nombre">
+        {{ categoria.nombre }}
+      </option>
+      }
+    </select>
+  </div>
 
   @if (cargando) {
     <p class="mensaje">Cargando productos...</p>
@@ -11,19 +33,18 @@
   }
 
   @if (!cargando && !error && productos.length > 0) {
-    <div class="products-container">
+  <div class="products-container">
 
-      @for (producto of productos; track producto.id) {
+    @for (producto of productos; track producto.id) {
 
-        @if (producto.activo) {
-          <product-card-component
-            [producto]="producto" (agregar)="addToCart($event)"
-          />
-        }
+      @if (producto.activo) {
+      <product-card-component
+        [producto]="producto"
+        (agregar)="addToCart($event)"
+      />
       }
-
-    </div>
-
+    }
+  </div>
   }
 
   @if (!cargando && !error && productos.length === 0) {

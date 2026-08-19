@@ -11,7 +11,7 @@ export class CategoriaService {
 
   private http = inject(HttpClient);
 
-  private apiUrl = `${environment.apiUrl}/categoria`;
+  private apiUrl = `${environment.apiUrl}/categorias`;
 
   getAllCategoria(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.apiUrl);

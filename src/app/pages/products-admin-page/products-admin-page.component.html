@@ -3,7 +3,9 @@
 <div id="productos" class="table-container">
   <h2><strong>Nuestros productos</strong></h2>
 
-  <button routerLink="createProducto-page" routerLinkActive="active">➕</button>
+  <button
+  routerLink="createProducto-page"
+  routerLinkActive="active">➕</button>
 
   @if (cargando) {
   <p class="mensaje">Cargando productos...</p>
@@ -29,6 +31,7 @@
           <th>Categoria Nombre</th>
           <th></th>
           <th></th>
+          <th></th>
         </tr>
       </thead>
 
@@ -43,14 +46,19 @@
           <td>{{ producto.activo }}</td>
           <td>{{ producto.categoria.id }}</td>
           <td>{{ producto.categoria.nombre }}</td>
-          <td>
+
           <td>
             <button
             type="button"
             (click)="cambiarActivo(producto)">
-              🔄
+              Habilitar 🔄
             </button>
           </td>
+         <td>
+            <button
+              [routerLink]="['update-form-page', producto.id]"
+              routerLinkActive="active">⚡UPDATE</button>
+         </td>
         </tr>
         }
       </tbody>

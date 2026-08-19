@@ -18,6 +18,7 @@ import { PedidosAdminPageComponent }
 
 import {CreateProductoPageComponent}
 from './pages/createProducto-page/createProducto-page.component';
+import { UpdateFormPageComponent } from './pages/update-form-page.component/update-form-page.component';
 
 export const routes: Routes = [
   {
@@ -57,6 +58,10 @@ export const routes: Routes = [
       {
         path: 'products-admin-page/createProducto-page',
         component: CreateProductoPageComponent
+      },
+      {
+        path: 'products-admin-page/update-form-page/:id',
+        component: UpdateFormPageComponent
       }
     ]
   },

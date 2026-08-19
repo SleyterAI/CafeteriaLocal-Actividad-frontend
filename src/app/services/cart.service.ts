@@ -15,9 +15,7 @@ export class CartService {
 
   //Cantidad total de unidades
   readonly cartCount = computed(() =>
-    this.cartProducts().reduce(
-      (total, item) => total + item.cantidad, 0)
-  );
+    this.cartProducts().reduce((total, item) => total + item.cantidad, 0));
 
   addToCart(producto: Producto): void {
 
@@ -29,17 +27,14 @@ export class CartService {
 
       if (itemExistente) {
         return items.map(item =>
-          item.producto.id === producto.id
-            ? {
-              ...item,
+          item.producto.id === producto.id?
+            {...item,
               cantidad: item.cantidad + 1
-            }
-            : item
+            }: item
         );
       }
 
-      return [
-        ...items,
+      return [...items,
         {
           producto,
           cantidad: 1
@@ -69,8 +64,7 @@ export class CartService {
         .map(item =>
           item.producto.id === productoId
             ? { ...item, cantidad: item.cantidad - 1 }
-            : item
-        )
+            : item)
         .filter(item => item.cantidad > 0)
     );
     this.saveCart();

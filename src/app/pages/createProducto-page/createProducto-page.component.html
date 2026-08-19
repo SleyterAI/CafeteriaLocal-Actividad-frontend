@@ -44,7 +44,8 @@
         ) {
 
         <small class="error-text">
-          La descripción es obligatoria.
+          La descripción es obligatoria y debe tener
+          al menos 10 caracteres.
         </small>
 
         }
@@ -85,6 +86,16 @@
         type="number"
         formControlName="stock"
         placeholder="Cantidad disponible">
+
+        @if (
+        productoForm.controls.stock.touched &&
+        productoForm.controls.stock.invalid
+        ) {
+
+        <small class="error-text">
+          El stock debe ser mayor a 0.
+        </small>
+        }
       </div>
 
 
@@ -98,6 +109,15 @@
         type="url"
         formControlName="imageUrl"
         placeholder="https://ejemplo.com/imagen.jpg">
+        @if (
+        productoForm.controls.imageUrl.touched &&
+        productoForm.controls.imageUrl.invalid
+        ) {
+
+        <small class="error-text">
+          Url de imagen obligatoria.
+        </small>
+        }
       </div>
 
 
@@ -112,7 +132,15 @@
         type="number"
         formControlName="categoriaId"
         placeholder="Ejemplo: 5">
+        @if (
+        productoForm.controls.categoriaId.touched &&
+        productoForm.controls.categoriaId.invalid
+        ) {
 
+        <small class="error-text">
+          Id de categoria obligatoria.
+        </small>
+        }
       </div>
 
 
@@ -141,6 +169,7 @@
       @if (mensaje) {
     <div class="mensaje success">
       {{ mensaje }}
+
     </div>
     }
 

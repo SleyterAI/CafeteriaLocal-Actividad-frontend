@@ -10,7 +10,7 @@ export interface Pedido {
   clienteNombre:string;
   celular:string;
   direccion:string;
-  pedidoDetalleRequest: PedidoDetalleRequest[];
+  detallePedidoRequestDto: PedidoDetalleRequest[];
 }
 
 export interface PedidoRequest {

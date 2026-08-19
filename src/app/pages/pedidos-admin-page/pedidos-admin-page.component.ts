@@ -78,6 +78,7 @@ export class PedidosAdminPageComponent {
         if (index !== -1) {
           this.pedidoRequest[index] = pedidoActualizado;
         }
+        this.actualizandoEstado.delete(pedido.id);
       },
 
       error: (err) => {
@@ -96,7 +97,6 @@ export class PedidosAdminPageComponent {
   getEstadoClass(estado: string): string {
 
     switch (estado.toLowerCase()) {
-
       case 'pendiente':
         return 'estado-pendiente';
 
@@ -110,10 +110,10 @@ export class PedidosAdminPageComponent {
         return '';
     }
   }
+
   getEstadoLabel(estado: string): string {
 
     switch (estado.toLowerCase()) {
-
       case 'pendiente':
         return 'Pendiente';
 

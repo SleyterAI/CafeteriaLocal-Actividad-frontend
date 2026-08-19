@@ -1,0 +1,141 @@
+<section class="update-container">
+
+  <h1>Actualizar producto</h1>
+
+  @if (cargando) {
+    <p>Cargando producto...</p>
+  }
+  @if (error) {
+    <p class="error">
+      {{ error }}
+    </p>
+  }
+
+  @if (!cargando) {
+    <form
+      [formGroup]="formulario"
+      (ngSubmit)="actualizarProducto()"
+    >
+
+      <!-- NOMBRE -->
+      <div class="form-group">
+        <label for="nombre">
+          Nombre
+        </label>
+
+        <input
+          id="nombre"
+          type="text"
+          formControlName="nombre"
+        />
+
+        @if (
+          formulario.controls.nombre.touched &&
+          formulario.controls.nombre.invalid
+        ) {
+          <small>
+            El nombre es obligatorio.
+          </small>
+        }
+      </div>
+
+
+      <!-- DESCRIPCIÓN -->
+      <div class="form-group">
+        <label for="descripcion">
+          Descripción
+        </label>
+
+        <textarea
+          id="descripcion"
+          formControlName="descripcion"
+          rows="4"
+        ></textarea>
+      </div>
+
+
+      <!-- PRECIO -->
+      <div class="form-group">
+        <label for="precio">
+          Precio
+        </label>
+
+        <input
+          id="precio"
+          type="number"
+          formControlName="precio"
+        />
+      </div>
+
+
+      <!-- STOCK -->
+      <div class="form-group">
+        <label for="stock">
+          Stock
+        </label>
+
+        <input
+          id="stock"
+          type="number"
+          formControlName="stock"
+        />
+      </div>
+
+
+      <!-- IMAGEN -->
+      <div class="form-group">
+        <label for="imageUrl">
+          URL de imagen
+        </label>
+
+        <input
+          id="imageUrl"
+          type="text"
+          formControlName="imageUrl"
+        />
+      </div>
+
+
+      <!-- CATEGORÍA -->
+      <div class="form-group">
+        <label for="categoria">
+          Categoría
+        </label>
+
+        <input
+          id="categoria"
+          type="number"
+          formControlName="categoriaId"
+        />
+        <!--<select formControlName="categoriaId"></select>-->
+      </div>
+
+
+      <!-- ACTIVO -->
+      <div class="form-group checkbox">
+        <label>
+          <input
+            type="checkbox"
+            formControlName="activo"
+          />
+          Producto activo
+        </label>
+      </div>
+
+
+      <!-- BOTÓN -->
+      <button
+        type="submit"
+        [disabled]="guardando"
+      >
+
+        @if (guardando) {
+          Guardando...
+        } @else {
+          Actualizar producto
+        }
+      </button>
+    </form>
+  }
+</section>
+

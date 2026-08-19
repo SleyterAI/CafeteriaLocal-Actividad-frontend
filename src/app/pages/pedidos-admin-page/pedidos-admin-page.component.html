@@ -30,26 +30,16 @@
         </h3>
 
         <p>
-          {{ pedido.fecha }}
+          <strong>{{ pedido.fecha }}</strong>
         </p>
-
-        <p>
-  Estado recibido:
-  <strong>{{ pedido.estado }}</strong>
-</p>
-
-<p>
-  Estado label:
-  <strong>{{ getEstadoLabel(pedido.estado) }}</strong>
-</p>
-
       </div>
 
       <select
         [value]="pedido.estado"
         [class]="getEstadoClass(pedido.estado)"
-        [disabled]="actualizandoEstado.has(pedido.id)"
-        (change)="cambiarEstado(pedido,$any($event.target).value)">
+
+        (change)="cambiarEstado(pedido,$any($event.target).value)"
+        [disabled]="actualizandoEstado.has(pedido.id)">
 
         @for (estado of estados; track estado) {
 

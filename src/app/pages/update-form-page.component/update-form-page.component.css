@@ -1,0 +1,218 @@
+.update-container {
+  width: min(700px, 90%);
+  margin: 40px auto;
+  padding: 30px 35px;
+
+  background-color: #fffaf5;
+  border: 1px solid #e4d5c8;
+  border-radius: 14px;
+
+  box-shadow: 0 6px 20px rgba(75, 50, 35, 0.12);
+}
+
+.update-container h1 {
+  margin-bottom: 30px;
+
+  color: #4a3428;
+  font-size: 2rem;
+  text-align: center;
+}
+
+
+/* FORMULARIO */
+
+.update-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+/* GRUPO */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+
+/* LABEL */
+
+.form-group label {
+  color: #4a3428;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+
+/* INPUTS Y TEXTAREA */
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+
+  border: 1px solid #cdb9a9;
+  border-radius: 8px;
+
+  background-color: #ffffff;
+
+  color: #3f2c22;
+  font-family: inherit;
+  font-size: 0.95rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* HOVER */
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+  border-color: #9a7053;
+}
+
+
+/* FOCUS */
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #8b5e3c;
+
+  box-shadow:
+    0 0 0 3px rgba(139, 94, 60, 0.15);
+}
+
+
+/* TEXTAREA */
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+
+/* ERRORES */
+
+.form-group small {
+  color: #b42318;
+  font-size: 0.85rem;
+}
+
+
+/* CHECKBOX */
+
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.form-group.checkbox input {
+  width: 18px;
+  height: 18px;
+
+  accent-color: #8b5e3c;
+
+  cursor: pointer;
+}
+
+
+/* BOTÓN */
+
+.update-container button[type="submit"] {
+  width: 100%;
+
+  margin-top: 10px;
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background-color: #8b5e3c;
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+
+/* HOVER BOTÓN */
+
+.update-container button[type="submit"]:hover {
+  background-color: #6f472f;
+}
+
+
+/* CLICK */
+
+.update-container button[type="submit"]:active {
+  transform: scale(0.98);
+}
+
+
+/* BOTÓN DESHABILITADO */
+
+.update-container button[type="submit"]:disabled {
+  background-color: #b8a69a;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* MENSAJE DE ERROR */
+
+.update-container > .error {
+  margin-bottom: 20px;
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background-color: #fdecec;
+  color: #b42318;
+
+  text-align: center;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+
+  .update-container {
+    width: 90%;
+    padding: 25px 20px;
+    margin: 25px auto;
+  }
+
+  .update-container h1 {
+    font-size: 1.6rem;
+  }
+
+  .update-container form {
+    gap: 16px;
+  }
+}

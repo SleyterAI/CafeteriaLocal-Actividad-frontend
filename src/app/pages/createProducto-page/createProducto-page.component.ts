@@ -24,17 +24,18 @@ export class CreateProductoPageComponent {
 
     nombre: ['',[
         Validators.required,
-        Validators.minLength(3)]],
+        Validators.minLength(5)]],
 
-    descripcion: ['',[Validators.required]],
+    descripcion: ['',[Validators.required,
+        Validators.minLength(10)]],
 
     precio: [0,[
         Validators.required,
-        Validators.min(0.01)]],
+        Validators.min(1)]],
 
     stock: [0,[
         Validators.required,
-        Validators.min(0)]],
+        Validators.min(1)]],
 
     imageUrl: ['',[Validators.required]],
 

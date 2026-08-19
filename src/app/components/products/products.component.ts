@@ -1,13 +1,13 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { RouterLink } from '@angular/router';
 import { ProductCardComponent }
 from "../product-card/product-card.component";
-import { ProductoService }
-from "../../services/producto.service";
-import { Producto }
-from "../../interfaces/producto.interface";
-import { CartService }
-from "../../services/cart.service";
+
+import { ProductoService }from "../../services/producto.service";
+import { CategoriaService } from "../../services/categoria.service";
+import { CartService }from "../../services/cart.service";
+
+import { Producto }from "../../interfaces/producto.interface";
+import { Categoria } from "../../interfaces/categoria.interface";
 
 @Component({
   selector:'products-component',
@@ -19,14 +19,36 @@ from "../../services/cart.service";
 export class ProductsComponent implements OnInit{
 
 private productoService = inject(ProductoService);
+private categoriaService = inject(CategoriaService);
 private cartService = inject(CartService);
 
 productos: Producto[] = [];
+categorias: Categoria[] = [];
+
 cargando = false;
+cargandoCategorias = false;
 error = '';
 
+categoriaSeleccionada = '';
+
   ngOnInit(): void {
+    this.getCategorias();
     this.getAllProducts();
+  }
+
+  getCategorias(): void {
+    this.cargandoCategorias = true;
+
+    this.categoriaService.getAllCategoria().subscribe({
+      next: (data) => {
+        this.categorias = data;
+        this.cargandoCategorias = false;
+      },
+      error: (err) => {
+        console.error('Error al obtener categorías:', err);
+        this.cargandoCategorias = false;
+      }
+    });
   }
 
   getAllProducts(): void {
@@ -44,6 +66,40 @@ error = '';
         this.cargando = false;
       }
     });
+  }
+
+  getProductsByCategoria(nombreCategoria: string): void {
+
+    this.cargando = true;
+    this.error = '';
+
+    this.productoService.getProductsByCategoria(nombreCategoria)
+    .subscribe({
+        next: (data) => {
+          this.productos = data;
+          this.cargando = false;
+        },
+        error: (err) => {
+          console.error('Error al obtener productos por categoría:', err);
+          this.error = 'No se pudieron cargar los productos';
+          this.cargando = false;
+        }
+      });
+  }
+
+  cambiarCategoria(event: Event): void {
+
+    const select = event.target as HTMLSelectElement;
+
+    this.categoriaSeleccionada = select.value;
+
+    // Si seleccionamos "Todas"
+    if (!this.categoriaSeleccionada) {
+      this.getAllProducts();
+      return;
+    }
+
+    this.getProductsByCategoria(this.categoriaSeleccionada);
   }
 
   addToCart(producto: Producto): void {
