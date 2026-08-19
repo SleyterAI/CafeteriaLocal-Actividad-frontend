@@ -29,11 +29,9 @@
           formControlName="nombre"
         />
 
-        @if (
-          formulario.controls.nombre.touched &&
-          formulario.controls.nombre.invalid
-        ) {
-          <small>
+        @if (formulario.controls.nombre.touched &&
+          formulario.controls.nombre.invalid) {
+          <small class="error-text">
             El nombre es obligatorio.
           </small>
         }
@@ -51,6 +49,14 @@
           formControlName="descripcion"
           rows="4"
         ></textarea>
+        @if (
+        formulario.controls.descripcion.touched &&
+        formulario.controls.descripcion.invalid
+        ) {
+        <small class="error-text">
+          Se necesita 10 caracteres como minimo.
+        </small>
+        }
       </div>
 
 
@@ -65,6 +71,14 @@
           type="number"
           formControlName="precio"
         />
+        @if (
+        formulario.controls.precio.touched &&
+        formulario.controls.precio.invalid
+        ) {
+        <small class="error-text">
+          Es necesario agregar precio.
+        </small>
+        }
       </div>
 
 
@@ -79,6 +93,14 @@
           type="number"
           formControlName="stock"
         />
+        @if (
+        formulario.controls.stock.touched &&
+        formulario.controls.stock.invalid
+        ) {
+        <small class="error-text">
+          Se necesita agregar stock.
+        </small>
+        }
       </div>
 
 
@@ -93,6 +115,14 @@
           type="text"
           formControlName="imageUrl"
         />
+        @if (
+        formulario.controls.imageUrl.touched &&
+        formulario.controls.imageUrl.invalid
+        ) {
+        <small class="error-text">
+          Se necesita agregar un link de imagen referencial.
+        </small>
+        }
       </div>
 
 
@@ -107,6 +137,14 @@
           type="number"
           formControlName="categoriaId"
         />
+        @if (
+        formulario.controls.categoriaId.touched &&
+        formulario.controls.categoriaId.invalid
+        ) {
+        <small class="error-text">
+          Se necesita seleccionar una categoria select.
+        </small>
+        }
         <!--<select formControlName="categoriaId"></select>-->
       </div>
 

@@ -34,3 +34,37 @@ img {
 .input-datos {
   width: 66%;
 }
+
+
+@media (max-width: 320px) {
+  .card {
+    width: 100%;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .input-datos {
+    width: 100%;
+  }
+
+  img {
+    max-height: 70px;
+  }
+
+  .contador {
+    gap: 0.25rem;
+  }
+
+  .contador button {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+  }
+
+  .contador input {
+    width: 50px;
+    text-align: center;
+  }
+}
