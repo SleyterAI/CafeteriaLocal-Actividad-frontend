@@ -16,7 +16,7 @@ body {
 
 main {
   flex: 1;
-  padding-top: 110px;
+  padding: 20px 2px 20px 2px;
 }
 
 footer {
@@ -32,20 +32,3 @@ footer a {
   font-size: 20px;
 }
 
-navbar-component {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-navbar-admin-component {
-  display: block;
-  position: fixed;
-  top: 55px; /* altura del primer navbar */
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}

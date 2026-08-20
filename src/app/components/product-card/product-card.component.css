@@ -41,7 +41,7 @@
 
 /* Nombre del producto */
 .product-info h4 {
-  height: 4.3rem;
+  height: 3.5rem;
   margin-bottom: 0;
   line-height: 1.2;
 }
@@ -52,7 +52,7 @@
   margin-top: 1rem;
 
   color: #6d4c41;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 /* Stock */
@@ -82,4 +82,24 @@
   background-color: #8f6844;
   border-color: #8f6844;
   color: white;
+}
+
+@media (max-width: 440px) {
+  .product-info span {
+    height: 1.5rem;
+  }
+
+  .product-info h4 {
+    height: 1.5rem;
+    margin-bottom: 0;
+    line-height: 1.2;
+  }
+
+  .product-info strong {
+  display: block;
+  margin-top: 1rem;
+
+  color: #6d4c41;
+  font-size: 1.8rem;
+}
 }

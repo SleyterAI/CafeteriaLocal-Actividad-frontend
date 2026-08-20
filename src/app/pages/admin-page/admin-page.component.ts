@@ -1,18 +1,20 @@
 import { Component } from "@angular/core";
-import { NavbarComponent } from "../../components/navbar/navbar.component";
-import { FooterComponent } from "../../components/footer/footer.component";
-import { NavbarAdminComponent } from "../../components/navbar-admin/navbar-admin.component";
 import { RouterOutlet } from '@angular/router';
+import { HambugerMenuComponent }
+  from "../../components/hamburger-menu/hamburger-menu.component";
+import { FooterComponent }
+  from "../../components/footer/footer.component";
+
+
 
 @Component({
-  selector:'app-admin-page',
-  templateUrl:'./admin-page.component.html',
-  styleUrl:'./admin-page.component.css',
+  selector: 'app-admin-page',
+  templateUrl: './admin-page.component.html',
+  styleUrl: './admin-page.component.css',
   imports: [
-    NavbarComponent,
-    NavbarAdminComponent,
-    FooterComponent,
+    HambugerMenuComponent,
     RouterOutlet,
-],
+    FooterComponent,
+  ],
 })
-export class AdminPageComponent{}
+export class AdminPageComponent { }

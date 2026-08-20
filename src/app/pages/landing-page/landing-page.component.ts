@@ -1,9 +1,11 @@
 import { Component } from "@angular/core";
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { IntroductionComponent } from '../../components/introduction/introduction.component';
-import { ProductsComponent } from '../../components/products/products.component';
-import { CartComponent } from "../../components/cart/cart.component";
-import { FooterComponent } from '../../components/footer/footer.component';
+
+import { HeaderComponent }
+from "../../components/header/header.component";
+import { BodyComponent }
+from "../../components/body/body.component";
+import { FooterComponent }
+from '../../components/footer/footer.component';
 
 @Component({
   selector:'app-landing-page',
@@ -11,12 +13,10 @@ import { FooterComponent } from '../../components/footer/footer.component';
   styleUrl:'./landing-page.component.css',
 
   imports: [
-    NavbarComponent,
-    IntroductionComponent,
-    ProductsComponent,
-    CartComponent,
-    FooterComponent,
-  ],
+    HeaderComponent,
+    BodyComponent,
+    FooterComponent
+],
 })
 
 export class LandingPageComponent{}

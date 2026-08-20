@@ -1,8 +1,7 @@
-<h1>PRODUCTOS GESTION ADMIN</h1>
+<h1>Gestión de productos:</h1>
 
 <div id="productos" class="table-container">
-  <h2><strong>Nuestros productos</strong></h2>
-
+  <span>Nuevo producto: </span>
   <button
   routerLink="createProducto-page"
   routerLinkActive="active">➕</button>
@@ -29,8 +28,8 @@
           <th>Activo</th>
           <th>Categoria ID</th>
           <th>Categoria Nombre</th>
-          <th></th>
-          <th></th>
+          <th>Habilitar</th>
+          <th>Actualizar</th>
 
         </tr>
       </thead>
@@ -51,13 +50,13 @@
             <button
             type="button"
             (click)="cambiarActivo(producto)">
-              Habilitar 🔄
+              🔄
             </button>
           </td>
          <td>
             <button
               [routerLink]="['update-form-page', producto.id]"
-              routerLinkActive="active">⚡UPDATE</button>
+              routerLinkActive="active">⚡</button>
          </td>
         </tr>
         }

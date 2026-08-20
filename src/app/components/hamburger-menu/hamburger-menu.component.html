@@ -1,0 +1,88 @@
+<header class="menu-header">
+
+  <h2 class="menu-logo">Café Luna</h2>
+
+  <button
+    class="hamburger-button"
+    type="button"
+    aria-label="Abrir menú"
+    [attr.aria-expanded]="isOpen()"
+    (click)="toggleMenu()"
+    >
+    <span class="hamburger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span class="menu-text">Menú</span>
+  </button>
+</header>
+
+@if (isOpen()) {
+<div
+  class="menu-overlay"
+  (click)="closeMenu()">
+</div>
+
+<aside class="side-menu">
+  <div class="menu-title">
+
+    <h2>Café Luna</h2>
+
+    <button
+      class="close-button"
+      type="button"
+      aria-label="Cerrar menú"
+      (click)="closeMenu()">
+      ×
+    </button>
+
+  </div>
+
+  <nav>
+    <a routerLink="/" (click)="closeMenu()">Inicio</a>
+    <a href="#productos" (click)="closeMenu()">Productos</a>
+    <a href="#contacto" (click)="closeMenu()">Contacto</a>
+    <button
+        class="admin-menu-button"
+        type="button"
+        (click)="toggleAdminMenu()"
+      >
+        <span><a>Admin Page</a></span>
+
+        <span>
+          <a>{{ isAdminMenuOpen() ? '‹' : '›' }}</a>
+        </span>
+      </button>
+  </nav>
+</aside>
+
+@if (isAdminMenuOpen()) {
+    <aside class="admin-submenu">
+      <div class="submenu-header">
+
+        <button
+          type="button"
+          class="back-button"
+          (click)="closeAdminMenu()"
+        >
+          ‹
+        </button>
+        <h4>Admin Page</h4>
+      </div>
+
+
+      <nav>
+        @for (option of adminOptions; track option.route) {
+          <a
+            [routerLink]="option.route"
+            (click)="closeMenu()"
+          >
+            {{ option.name }}
+          </a>
+        }
+
+      </nav>
+    </aside>
+  }
+}

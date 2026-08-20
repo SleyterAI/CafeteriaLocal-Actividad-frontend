@@ -1,3 +1,7 @@
+h1{
+  padding: 0px 20px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -81,3 +85,7 @@ th {
 
   border: 1px solid #f5b5b5;
 }
+
+@media (max-width: 440px) {}
+
+@media (min-width: 441px) and (max-width: 900px) {}
