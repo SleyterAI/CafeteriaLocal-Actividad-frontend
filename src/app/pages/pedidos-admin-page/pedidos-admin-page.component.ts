@@ -41,7 +41,7 @@ export class PedidosAdminPageComponent {
 
     this.pedidoService.getAllPedidoRequest().subscribe({
       next: (data) => {
-        this.pedidoRequest = data;
+        this.pedidoRequest = [...data].reverse();
         this.cargando = false;
       },
 

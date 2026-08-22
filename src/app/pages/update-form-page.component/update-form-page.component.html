@@ -173,7 +173,38 @@
           Actualizar producto
         }
       </button>
+
+      <button
+          type="cancelar"
+          class="button"
+          routerLink="/admin-page/products-admin-page">
+            Cancelar
+        </button>
     </form>
   }
 </section>
+
+@if (mostrarExito) {
+  <div class="success-overlay">
+
+    <div class="success-popup">
+
+      <div class="check-circle">
+        ✓
+      </div>
+
+      <h3>¡Producto actualizado!</h3>
+
+      <p>El producto se actualizo correctamente.</p>
+
+    </div>
+
+  </div>
+}
+
+@if (error) {
+  <div class="error-message">
+    {{ error }}
+  </div>
+}
 

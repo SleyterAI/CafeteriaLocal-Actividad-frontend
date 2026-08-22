@@ -2,6 +2,10 @@
    CONTENEDOR PRINCIPAL
    ========================================= */
 
+h1 {
+  margin-left: 20px;
+}
+
 .table-container {
   width: 100%;
   max-width: 1200px;

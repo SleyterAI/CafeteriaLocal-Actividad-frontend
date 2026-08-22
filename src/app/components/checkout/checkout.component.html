@@ -26,13 +26,11 @@
       @for (item of cartProducts(); track item.producto.id) {
       <div class="card mb-3 shadow-sm">
         <div class="card-body">
-          <div class="row align-items-center">
+          <div class="row align-items-center producto-row">
 
             <!-- Imagen -->
             <div class="col-md-2">
-              <img [src]="item.producto.imageUrl"
-              [alt]="item.producto.nombre"
-              class="img-fluid rounded">
+              <img [src]="item.producto.imageUrl" [alt]="item.producto.nombre" class="img-fluid rounded">
             </div>
 
             <!-- Información -->
@@ -48,12 +46,10 @@
 
 
             <!-- Cantidad -->
-            <div class="col-md-3">
+            <div class="col-md-3 cantidad-col">
               <div class="d-flex align-items-center gap-2">
-                <button
-                class="btn btn-outline-secondary btn-sm"
-                (click)="decrease(item.producto.id!)"
-                [disabled]="item.cantidad <= 1">
+                <button class="btn btn-outline-secondary btn-sm" (click)="decrease(item.producto.id!)"
+                  [disabled]="item.cantidad <= 1">
                   -
                 </button>
 
@@ -61,10 +57,8 @@
                   {{ item.cantidad }}
                 </span>
 
-                <button
-                class="btn btn-outline-secondary btn-sm"
-                (click)="increase(item.producto.id!)"
-                [disabled]="item.cantidad == item.producto.stock">
+                <button class="btn btn-outline-secondary btn-sm" (click)="increase(item.producto.id!)"
+                  [disabled]="item.cantidad == item.producto.stock">
                   +
                 </button>
               </div>
@@ -73,14 +67,14 @@
                 <small class="text-danger">
                   <strong>¡Límite de stock!</strong>
                 </small>
-              }
+                }
               </div>
 
             </div>
 
 
             <!-- Subtotal -->
-            <div class="col-md-2">
+            <div class="col-md-2 subtotal-col">
               <strong>
                 S/
                 {{
@@ -92,9 +86,8 @@
 
 
             <!-- Eliminar -->
-            <div class="col-md-1">
-              <button class="btn btn-outline-danger btn-sm"
-              (click)="remove(item.producto.id!)">
+            <div class="col-md-1 eliminar-col">
+              <button class="btn btn-outline-danger btn-sm" (click)="remove(item.producto.id!)">
                 🗑️
               </button>
             </div>
@@ -135,53 +128,78 @@
   }
   <!--Formulario cliente-->
   <div>
-  <h2 class="mb-0">Datos personales:</h2>
+    <h2 class="mb-0">Datos personales:</h2>
 
-  <form #formulario="ngForm" (ngSubmit)="crearPedido()">
+    <form [formGroup]="formulario" (ngSubmit)="crearPedido()">
 
-    <div class="mb-3 mt-4">
-      <input
-        type="text"
-        id="nombre"
-        name="nombre"
-        class="form-control input-datos"
-        placeholder="Ingrese su nombre"
-        [(ngModel)]="clienteNombre"
-        required
-      />
-    </div>
+      <div class="mb-3 mt-4">
+        <input
+          type="text"
+          id="nombre"
+          formControlName="nombre"
+          class="form-control input-datos"
+          placeholder="Ingrese su nombre" />
+          @if (
+        formulario.get('nombre')?.touched &&
+        formulario.get('nombre')?.hasError('required')
+        ) {
+        <small class="error-text">
+          El nombre es obligatorio.
+        </small>
+        }
+      </div>
 
-    <div class="mb-3 mt-4">
-      <input
-        type="tel"
-        id="celular"
-        name="celular"
-        class="form-control input-datos"
-        placeholder="Ingrese su celular"
-        [(ngModel)]="celular"
-        required
-      />
-    </div>
+      <div class="mb-3 mt-4">
+        <input
+          type="tel"
+          id="celular"
+          formControlName="celular"
+          class="form-control input-datos"
+          placeholder="Ingrese su celular" />
 
-    <div class="mb-3 mt-4">
-      <input
-        type="text"
-        id="direccion"
-        name="direccion"
-        class="form-control input-datos"
-        placeholder="Ingrese su dirección"
-        [(ngModel)]="direccion"
-        required
-      />
-    </div>
+        @if (
+        formulario.get('celular')?.touched &&
+        formulario.get('celular')?.hasError('required')
+        ) {
+        <small class="error-text">
+          El celular es obligatorio.
+        </small>
+        }
 
-    <button
-      class="btn btn-dark"
-      type="submit"
-      [disabled]="formulario.invalid">
-      Continuar compra
-    </button>
+        @if (
+        formulario.get('celular')?.touched &&
+        formulario.get('celular')?.hasError('pattern')
+        ) {
+        <small class="error-text">
+          El celular debe tener 9 dígitos numericos.
+        </small>
+        }
+      </div>
 
-  </form>
-</div>
+      <div class="mb-3 mt-4">
+        <input
+          type="text"
+          id="direccion"
+          formControlName="direccion"
+          class="form-control input-datos"
+          placeholder="Ingrese su dirección" />
+          @if (
+        formulario.get('direccion')?.touched &&
+        formulario.get('direccion')?.hasError('required')
+        ) {
+        <small class="error-text">
+          La dirección es obligatoria.
+        </small>
+        }
+      </div>
+
+      <button
+        class="btn btn-dark"
+        type="submit"
+        [disabled]="formulario.invalid">
+        Continuar compra
+      </button>
+
+    </form>
+  </div>
 </section>

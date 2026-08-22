@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {FormBuilder,ReactiveFormsModule,Validators} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { ProductoService } from '../../services/producto.service';
 import { ProductoRequest } from '../../interfaces/producto.interface';
@@ -10,7 +10,7 @@ import { ProductoRequest } from '../../interfaces/producto.interface';
   templateUrl: './update-form-page.component.html',
   styleUrl: './update-form-page.component.css',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule, RouterLink
   ]
 })
 export class UpdateFormPageComponent implements OnInit {
@@ -24,6 +24,7 @@ export class UpdateFormPageComponent implements OnInit {
 
   cargando = false;
   guardando = false;
+  mostrarExito = false;
   error = '';
   mensaje = '';
 
@@ -67,11 +68,9 @@ export class UpdateFormPageComponent implements OnInit {
     this.error = '';
 
     this.productoService
-      .getProductById(this.productoId)
-      .subscribe({
+      .getProductById(this.productoId).subscribe({
 
         next: (producto) => {
-
           this.formulario.patchValue({
             nombre: producto.nombre,
             descripcion: producto.descripcion,
@@ -83,6 +82,8 @@ export class UpdateFormPageComponent implements OnInit {
           });
 
           this.cargando = false;
+
+
         },
 
         error: (err) => {
@@ -103,7 +104,6 @@ export class UpdateFormPageComponent implements OnInit {
 
 
   actualizarProducto(): void {
-
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
       return;
@@ -128,34 +128,29 @@ export class UpdateFormPageComponent implements OnInit {
     };
 
     this.productoService
-      .updateProducto(this.productoId,productoRequest)
-      .subscribe({
-
-        next: (productoActualizado) => {
-          console.log(
-            'Producto actualizado:',
-            productoActualizado
-          );
-          this.mensaje ='Producto actualizado correctamente';
+      .updateProducto(this.productoId, productoRequest).subscribe({
+        next: () => {
+          this.mensaje = 'Producto actualizado correctamente';
           this.guardando = false;
 
-          // Volver a la tabla
-          this.router.navigate([
-            '/admin-page/products-admin-page'
-          ]);
+          // Mostrar popup
+          this.mostrarExito = true;
+
+          // Esperar 1.5 segundos y navegar
+          setTimeout(() => {
+            this.mostrarExito = false;
+            this.router.navigate([
+              '/admin-page/products-admin-page']);
+          }, 1500);
         },
 
         error: (err) => {
-
           console.error(
-            'Error al actualizar producto:',
-            err
-          );
+            'Error al actualizar producto:',err);
           this.error =
             'No se pudo actualizar el producto';
           this.guardando = false;
         }
-
       });
   }
 }

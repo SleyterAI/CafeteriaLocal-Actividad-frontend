@@ -1,35 +1,39 @@
-<section class="container py-5 text-center">
+<div class="app-container">
+  <hamburger-menu-component></hamburger-menu-component>
+  <main>
+    <section class="container py-5 text-center">
 
-  <div class="card shadow-sm p-5">
+    <div class="card shadow-sm p-5">
 
-    @if (estado === 'exito') {
+      @if (estado === 'exito') {
 
-    <div class="alert alert-success">
-      <h2>Pedido creado correctamente</h2>
+      <div class="alert alert-success">
+        <h2>Pedido creado correctamente</h2>
 
-      <p>
-        Gracias por tu compra.
-      </p>
+        <p>
+          Gracias por tu compra.
+        </p>
+      </div>
+
+      } @else {
+
+      <div class="alert alert-danger">
+        <h2>No se pudo crear el pedido</h2>
+
+        <p>
+          Ocurrió un error al procesar tu pedido.
+        </p>
+      </div>
+
+      }
+
+      <button class="btn btn-dark mt-3" routerLink="/">
+        Volver al inicio
+      </button>
+
     </div>
 
-  } @else {
-
-    <div class="alert alert-danger">
-      <h2>No se pudo crear el pedido</h2>
-
-      <p>
-        Ocurrió un error al procesar tu pedido.
-      </p>
-    </div>
-
-  }
-
-    <button
-      class="btn btn-dark mt-3"
-      routerLink="/">
-      Volver al inicio
-    </button>
-
-  </div>
-
-</section>
+  </section>
+  </main>
+  <footer-component></footer-component>
+</div>

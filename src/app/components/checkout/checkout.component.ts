@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule,NonNullableFormBuilder,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { CartService } from '../../services/cart.service';
@@ -11,24 +11,20 @@ import { Pedido } from '../../interfaces/pedido.interface';
   selector: 'checkout-component',
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css',
-  imports: [DecimalPipe, FormsModule],
+  imports: [DecimalPipe, ReactiveFormsModule],
 })
 export class CheckoutComponent {
 
   private cartService = inject(CartService);
   private pedidoService = inject(PedidoService);
   private router = inject(Router);
+  private fb = inject(NonNullableFormBuilder);
 
   readonly cartProducts = this.cartService.getCartProducts();
   readonly cartCount = this.cartService.cartCount;
 
   readonly subtotal = this.cartService.subtotal;
   readonly total = this.cartService.total;
-
-  // Datos del cliente
-  clienteNombre = '';
-  celular = '';
-  direccion = '';
 
   increase(productoId: number): void {
     this.cartService.increaseQuantity(productoId);
@@ -42,12 +38,26 @@ export class CheckoutComponent {
     this.cartService.removeFromCart(productoId);
   }
 
+  formulario = this.fb.group({
+    nombre: ['', Validators.required],
+    celular: ['', [Validators.required,
+      Validators.pattern(/^\d{9}$/)
+    ]],
+    direccion: ['', Validators.required]
+  });
+
   crearPedido(): void {
+    if (this.formulario.invalid) {
+    this.formulario.markAllAsTouched();
+    return;
+  }
+
+  const { nombre, celular, direccion } = this.formulario.getRawValue();
 
     const pedido: Pedido = {
-      clienteNombre: this.clienteNombre,
-      celular: this.celular,
-      direccion: this.direccion,
+      clienteNombre: nombre,
+      celular: celular,
+      direccion: direccion,
 
       detallePedidoRequestDto: this.cartProducts().map(item => ({
         productoId: item.producto.id!,
@@ -55,11 +65,11 @@ export class CheckoutComponent {
       }))
     };
 
-    console.log(pedido);
+
 
     this.pedidoService.createPedido(pedido).subscribe({
-      next: (respuesta) => {
-        console.log('Pedido creado:', respuesta);
+      next: () => {
+
         this.cartService.clearCart();
         this.router.navigate(['/pedido-confirmacion-page'],
           { queryParams: { estado: 'exito' } });
@@ -67,9 +77,7 @@ export class CheckoutComponent {
 
       error: (error) => {
         console.error('Error al crear pedido:', error);
-        console.error('Status:', error.status);
-        console.error('Error:', error.error);
-        console.error('Mensaje:', error.message);
+
         this.cartService.clearCart();
         this.router.navigate(['/pedido-confirmacion-page'],
           { queryParams: { estado: 'error' } });

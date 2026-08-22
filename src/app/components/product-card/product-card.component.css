@@ -96,10 +96,10 @@
   }
 
   .product-info strong {
-  display: block;
-  margin-top: 1rem;
+    display: block;
+    margin-top: 1rem;
 
-  color: #6d4c41;
-  font-size: 1.8rem;
-}
+    color: #6d4c41;
+    font-size: 1.8rem;
+  }
 }

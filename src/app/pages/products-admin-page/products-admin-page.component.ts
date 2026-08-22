@@ -20,6 +20,9 @@ export class ProductsAdminPageComponent {
   //producto = this.productoService.
   cargando = false;
   error = '';
+  mostrarExito = false
+  tituloPopup = '';
+  mensajePopup = '';
 
   ngOnInit(): void {
     this.getAllProducto();
@@ -31,7 +34,7 @@ export class ProductsAdminPageComponent {
 
     this.productoService.getAllProduct().subscribe({
       next: (data) => {
-        this.productos = data;
+        this.productos = [...data].reverse();
         this.cargando = false;
       },
       error: (err) => {
@@ -47,20 +50,42 @@ export class ProductsAdminPageComponent {
     const nuevoEstado = !producto.activo;
 
     this.productoService.cambiarActivo(producto.id!, nuevoEstado).subscribe({
-        next: (productoActualizado) => {
-          console.log(
-            'Producto actualizado:',
-            productoActualizado
-          );
-          producto.activo = productoActualizado.activo;
-        },
+      next: (productoActualizado) => {
+        /*console.log(
+          'Producto actualizado:',
+          productoActualizado
+        );*/
+        producto.activo = productoActualizado.activo;
+        // Mostrar popup
+        this.mostrarExito = true;
 
-        error: (err) => {
-          console.error('Error al actualizar estado:',err);
-          this.error =
-            'No se pudo actualizar el estado del producto';
-        }
-      });
+        if (productoActualizado.activo) {
+
+            this.tituloPopup = '¡Producto activo!';
+
+            this.mensajePopup =
+              'El producto se activó correctamente.';
+
+          } else {
+
+            this.tituloPopup = '¡Producto desactivado!';
+
+            this.mensajePopup =
+              'El producto se desactivó correctamente.';
+          }
+
+        // Esperar 1.5 segundos y navegar
+        setTimeout(() => {
+          this.mostrarExito = false;
+        }, 1500);
+      },
+
+      error: (err) => {
+        console.error('Error al actualizar estado:', err);
+        this.error =
+          'No se pudo actualizar el estado del producto';
+      }
+    });
   }
 
 }

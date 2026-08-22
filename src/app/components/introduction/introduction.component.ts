@@ -6,6 +6,4 @@ import { Component } from "@angular/core";
   selector:'introduction-component',
 })
 
-export class IntroductionComponent{
-
-}
+export class IntroductionComponent{}

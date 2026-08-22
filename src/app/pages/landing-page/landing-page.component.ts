@@ -6,6 +6,7 @@ import { BodyComponent }
 from "../../components/body/body.component";
 import { FooterComponent }
 from '../../components/footer/footer.component';
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector:'app-landing-page',
@@ -15,7 +16,8 @@ from '../../components/footer/footer.component';
   imports: [
     HeaderComponent,
     BodyComponent,
-    FooterComponent
+    FooterComponent,
+    RouterOutlet,
 ],
 })
 

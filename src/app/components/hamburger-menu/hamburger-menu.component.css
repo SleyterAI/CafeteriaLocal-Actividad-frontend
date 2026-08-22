@@ -84,7 +84,7 @@
   left: 0;
 
   width: 280px;
-  height: 100vh;
+  height: 100dvh;
 
   padding: 10px 24px 24px;
 
@@ -143,6 +143,7 @@
   top: 0;
   left: 280px;
 
+  left: 280px;
   width: 210px;
   height: 100vh;
 
@@ -219,4 +220,32 @@
 
 .admin-submenu nav a:hover {
   background: #f5f5f5;
+}
+
+
+@media (max-width: 600px) {
+
+  .menu-header {
+    height: 60px;
+    padding: 0 12px;
+  }
+
+  .hamburger-button {
+    padding: 10px 15px;
+  }
+
+  .side-menu {
+    width: min(200px, 85vw);
+    height: 100dvh;
+    padding: 10px 18px 24px;
+  }
+
+  .admin-submenu {
+    top: 0;
+    left: 0;
+
+    width: min(200px, 85vw);
+    height: 100dvh;
+  }
+
 }

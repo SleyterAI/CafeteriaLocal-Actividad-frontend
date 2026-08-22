@@ -1,7 +1,9 @@
 import { Component } from "@angular/core";
-import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { FooterComponent } from '../../components/footer/footer.component';
+
+import { HambugerMenuComponent } from "../../components/hamburger-menu/hamburger-menu.component";
 import { CheckoutComponent } from "../../components/checkout/checkout.component";
+import { FooterComponent } from '../../components/footer/footer.component';
+
 import { CartComponent } from "../../components/cart/cart.component";
 
 @Component({
@@ -10,10 +12,11 @@ import { CartComponent } from "../../components/cart/cart.component";
   styleUrl:'./checkout-page.component.css',
 
   imports: [
-    NavbarComponent,
+    HambugerMenuComponent,
     CheckoutComponent,
     CartComponent,
     FooterComponent,
+    HambugerMenuComponent
 ],
 })
 

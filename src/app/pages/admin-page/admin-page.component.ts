@@ -5,8 +5,6 @@ import { HambugerMenuComponent }
 import { FooterComponent }
   from "../../components/footer/footer.component";
 
-
-
 @Component({
   selector: 'app-admin-page',
   templateUrl: './admin-page.component.html',
